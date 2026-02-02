@@ -1,27 +1,25 @@
-Lg = love.graphics
-GameWindow = love.window
-WindowWidth = 800
-WindowHeight = 600
-
-MaximizedWindowWidth = 800
-MaximizedWindowHeight = 600
+require 'Libs.simpleScale'
+require 'Libs.game'
 
 function love.load()
-  local settings = love.window.setMode(WindowWidth,WindowHeight,{resizable = true,vsync = 0,minwidth = MaximizedWindowWidth,minheight = MaximizedWindowHeight})
- GameWindow = simpleScale.setWindow(WindowWidth,WindowHeight,MaximizedWindowWidth,MaximizedWindowHeight,settings)
+    GameWindow.setTitle(Title)
+    simpleScale.setWindow(WindowWidth, WidthHeight, WindowWidth, WidthHeight, { fullscreen = false, resizable = true });
 end
-function love.resize(w,h)
- MaximizedWindowWidth = w
- MaximizedWindowHeight = h
-  
+
+function updateScale()
+    simpleScale.updateWindow(WindowWidth, WidthHeight, { fullscreen = fullscreen, resizable = true });
 end
+
+function love.resize()
+
+end
+
 function love.update(dt)
-   
+    simpleScale.resizeUpdate()
 end
 
 function love.draw()
     simpleScale.set()
-    Lg.circle("fill",400,300,50)
+    
     simpleScale.unSet()
 end
-
